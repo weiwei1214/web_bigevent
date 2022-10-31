@@ -21,6 +21,7 @@ $(function() {
         pwd: [/^[\S]{6,12}$/,
             '密码必须6到12位，且不能出现空格'
         ],
+
         // 校验两次密码是否一致
         repwd: function(value) {
             // 通过形参拿到的是确认密码框中的内容
@@ -39,12 +40,15 @@ $(function() {
         // 阻止默认行为
         e.preventDefault()
 
-        // 发起ajax的POST请求
+
         var data = {
             username: $('#form_reg [name=username]').val(),
             password: $('#form_reg [name=password]').val()
         }
-        $.post('http://www.liulongbin.top:3007/api/reguser', data,
+
+        // 发起ajax的POST请求
+        $.post('http://www.liulongbin.top:3007/api/reguser',
+            data,
             function(res) {
                 if (res.status !== 0) {
                     return layer.msg(res.message)
